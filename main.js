@@ -45,7 +45,7 @@ formEdit.addEventListener("submit", (e) => {
 });
 
 let coletaDados = () => {
-  
+
   const body = {
     "nome": nomeInput.value,
     "telefone": telInput.value,
@@ -58,13 +58,13 @@ let coletaDados = () => {
     method: 'POST',
     mode: 'cors',
     headers: {
-      'Content-Type' : 'Application/json',
+      'Content-Type': 'Application/json',
     },
     body: JSON.stringify(body)
   }
 
   fetch("https://api.box3.work/api/Contato/1aaba5b0-54a4-46fb-81bd-32286173af1e", header)
-  .then(response => console.log(response.json()));
+    .then(response => console.log(response.json()));
 
   listarContatos();
 };
@@ -79,7 +79,7 @@ let listarContatos = () => {
       console.log(json);
       json.forEach(contato => {
         let contatoAtivo = contato.ativo ? "Ativo" : "Inativo";
-          
+
         contatos.innerHTML += `
         <div id=${contato.id}>
               <span class="fw-bold">${contato.nome}</span>
@@ -97,7 +97,7 @@ let listarContatos = () => {
       });
     });
 
-  resetForm();
+  //resetForm();
 }
 
 let resetForm = () => {
@@ -115,7 +115,7 @@ let resetForm = () => {
 };
 
 botaoListagem.addEventListener("click", () => {
-    listarContatos();
+  listarContatos();
 });
 
 let deletarContato = (e) => {
@@ -133,7 +133,7 @@ let deletarContato = (e) => {
     method: 'DELETE',
     mode: 'cors',
     headers: {
-      'Content-Type' : 'Application/json',
+      'Content-Type': 'Application/json',
     },
     body: JSON.stringify(body)
   }
@@ -153,10 +153,10 @@ let editarContato = (e) => {
   nomeInputEdit.value = contatoSelecionado.children[0].innerHTML;
   telInputEdit.value = contatoSelecionado.children[1].innerHTML;
   emailInputEdit.value = contatoSelecionado.children[2].innerHTML;
-  
+
   statusContato = contatoSelecionado.children[3].innerHTML == "Ativo" ? true : false;
   console.log(contatoSelecionado.children[3].innerHTML, statusContato);
-  
+
   ativoInputEdit.checked = statusContato;
   dataInputEdit.value = contatoSelecionado.children[4].innerHTML;
 
@@ -178,7 +178,7 @@ function editContato() {
     method: 'PUT',
     mode: 'cors',
     headers: {
-      'Content-Type' : 'Application/json',
+      'Content-Type': 'Application/json',
     },
     body: JSON.stringify(body)
   }

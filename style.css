@@ -41,14 +41,16 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
-.fa-plus {
-  background-color: #1374a7;
-  padding: 3px;
-  border-radius: 3px;
+
+.fas {
+  color: #1374a7;
+  margin: 5px;
 }
 
-.msg {
-  color: red;
+.fa-plus {
+  background-color: transparent;
+  padding: 3px;
+  border-radius: 3px;
 }
 
 #contatos {
@@ -58,11 +60,12 @@ body {
   grid-template-columns: 1fr;
   gap: 14px;
   text-align: left;
+  padding: 10px;
 }
 
 #contatos::-webkit-scrollbar {
-  width: 16px;
-  margin-left: 5px;
+  width: 18px;
+  margin-left: 8px;
 }
 
 #contatos::-webkit-scrollbar-thumb {
@@ -75,12 +78,11 @@ body {
   background: #fff;
 }
 
-
 #contatos div {
   border: 3px solid #1374a7;
   background-color: #1374a722;
   border-radius: 6px;
-  padding: 5px;
+  padding: 10px;
   display: grid;
   gap: 4px;
 }
