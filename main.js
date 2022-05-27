@@ -14,27 +14,39 @@ let dados = [];
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   coletaDados();
+
   add.setAttribute("data-bs-dismiss", "modal");
   add.click();
+
   (() => {
     add.setAttribute("data-bs-dismiss", "");
   })();
 });
 
 let coletaDados = () => {
-  dados.push({
-    nome: nomeInput.value,
-    telefone: telInput.value,
-    email: emailInput.value,
-    ativo: ativoInput.checked ? true : false,
-    data: dataInput.value
-  });
+  
+  const body = {
+    "nome": nomeInput.value,
+    "telefone": telInput.value,
+    "email": emailInput.value,
+    "ativo": ativoInput.checked ? true : false,
+    "dataNascimento": dataInput.value
+  }
 
-  localStorage.setItem("data", JSON.stringify(dados));
+  const header = {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type' : 'Application/json',
+    },
+    body: JSON.stringify(body)
+  }
+
+  fetch("https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719", header)
+  .then(response => console.log(response.json()));
 
   listarContatos();
 
-  console.log(dados);
 };
 
 let listarContatos = () => {
@@ -55,7 +67,7 @@ let listarContatos = () => {
               <span class="small text-secondary">${contato.dataNascimento}</span>
       
               <span class="options">
-                <i onClick= "editarContato(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
+                <i onClick= "editarContato(this)" data-bs-toggle="modal" data-bs-target="#form-editar" class="fas fa-edit"></i>
                 <i onClick ="deletarContato(this); listarContatos()" class="fas fa-trash-alt"></i>
               </span>
             </div>
@@ -76,17 +88,40 @@ let resetForm = () => {
 };
 
 botaoListagem.addEventListener("click", () => {
-    criarContato();
+    listarContatos();
 });
 
 let deletarContato = (e) => {
-  e.parentElement.parentElement.remove();
+  let id = e.parentElement.parentElement.id;
+  // e.parentElement.parentElement.remove();
 
-  dados.splice(e.parentElement.parentElement.id, 1);
+  // dados.splice(e.parentElement.parentElement.id, 1);
 
-  localStorage.setItem("data", JSON.stringify(dados));
+  // localStorage.setItem("data", JSON.stringify(dados));
 
-  console.log(data);
+  // console.log(data);
+
+  const body = {
+    "nome": nomeInput.value,
+    "telefone": telInput.value,
+    "email": emailInput.value,
+    "ativo": ativoInput.checked ? true : false,
+    "dataNascimento": dataInput.value
+  }
+
+  const header = {
+    method: 'DELETE',
+    mode: 'cors',
+    headers: {
+      'Content-Type' : 'Application/json',
+    },
+    body: JSON.stringify(body)
+  }
+
+  const url = "https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719/" + id;
+
+  fetch(url, header)
+    .then(response => console.log(response.json()));
 };
 
 let editarContato = (e) => {
@@ -98,5 +133,27 @@ let editarContato = (e) => {
   ativoInput.value = contatoSelecionado.children[3].innerHTML;
   dataInput.value = contatoSelecionado.children[4].innerHTML;
   
-  deletarContato(e);
+  // deletarContato(e);
+
+  const body = {
+    "nome": nomeInput.value,
+    "telefone": telInput.value,
+    "email": emailInput.value,
+    "ativo": ativoInput.checked ? true : false,
+    "dataNascimento": dataInput.value
+  }
+
+  const header = {
+    method: 'DELETE',
+    mode: 'cors',
+    headers: {
+      'Content-Type' : 'Application/json',
+    },
+    body: JSON.stringify(body)
+  }
+
+  const url = "https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719/" + id;
+
+  fetch(url, header)
+    .then(response => console.log(response.json()));
 };
