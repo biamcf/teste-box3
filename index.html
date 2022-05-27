@@ -7,21 +7,23 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="icon" href="img/box3-icon.jpeg">
     <link rel="stylesheet" href="style.css">
+
     <title>Contato</title>
 </head>
 
   <body>
     <div class="app">
-      <h4 class="mb-3">Lista de Contatos</h4>
-
+      <img class="img-fluid rounded icon-box3" src="img/box3-icon.jpeg">
+      <h4 class="title mb-3">Lista de Contatos</h4>
+      
       <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
         <span>Adicionar contato</span>
         <i class="fas fa-plus"></i>
       </div>
 
-      <h5 class="text-center my-3">Contatos</h5>
-      <button id="botao-listagem" type="button" class="btn btn-primary btn-sm">Listar</button>
+      <button id="botao-listagem" type="button" class="btn btn-primary btn-sm">Listar contatos</button>
       <div id="contatos"></div>
     </div>
 
@@ -43,7 +45,7 @@
             <input type="email" class="form-control" name="" id="emailInput" required />
             <br />
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
               <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
             </div>
             <br />
@@ -81,7 +83,7 @@
             <input type="email" class="form-control" name="" id="emailInputEdit" required />
             <br />
             <div class="form-check form-switch">
-              <input class="form-check-input switch-edit" type="checkbox" id="flexSwitchCheckDefault" checked>
+              <input class="form-check-input switch-edit" type="checkbox" id="flexSwitchCheckDefault" >
               <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
             </div>
             <br />

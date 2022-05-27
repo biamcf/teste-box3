@@ -78,12 +78,14 @@ let listarContatos = () => {
     }).then(json => {
       console.log(json);
       json.forEach(contato => {
+        let contatoAtivo = contato.ativo ? "Ativo" : "Inativo";
+          
         contatos.innerHTML += `
         <div id=${contato.id}>
               <span class="fw-bold">${contato.nome}</span>
               <span class="fw-bold">${contato.telefone}</span>
               <span class="fw-bold">${contato.email}</span>
-              <span class="fw-bold">${contato.ativo}</span>
+              <span class="fw-bold">${contatoAtivo}</span>
               <span class="small text-secondary">${contato.dataNascimento}</span>
       
               <span class="options">
@@ -144,16 +146,20 @@ let deletarContato = (e) => {
 
 let editarContato = (e) => {
   let contatoSelecionado = e.parentElement.parentElement;
+  let statusContato;
 
   idEdit.value = e.parentElement.parentElement.id;
 
   nomeInputEdit.value = contatoSelecionado.children[0].innerHTML;
   telInputEdit.value = contatoSelecionado.children[1].innerHTML;
   emailInputEdit.value = contatoSelecionado.children[2].innerHTML;
-  ativoInputEdit.value = contatoSelecionado.children[3].innerHTML;
+  
+  statusContato = contatoSelecionado.children[3].innerHTML == "Ativo" ? true : false;
+  console.log(contatoSelecionado.children[3].innerHTML, statusContato);
+  
+  ativoInputEdit.checked = statusContato;
   dataInputEdit.value = contatoSelecionado.children[4].innerHTML;
 
-  console.log(dataInputEdit.value);
 
 };
 
