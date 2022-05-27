@@ -63,7 +63,7 @@ let coletaDados = () => {
     body: JSON.stringify(body)
   }
 
-  fetch("https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719", header)
+  fetch("https://api.box3.work/api/Contato/1aaba5b0-54a4-46fb-81bd-32286173af1e", header)
   .then(response => console.log(response.json()));
 
   listarContatos();
@@ -72,7 +72,7 @@ let coletaDados = () => {
 let listarContatos = () => {
   contatos.innerHTML = "";
 
-  fetch("https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719")
+  fetch("https://api.box3.work/api/Contato/1aaba5b0-54a4-46fb-81bd-32286173af1e")
     .then(response => {
       return response.json();
     }).then(json => {
@@ -136,7 +136,7 @@ let deletarContato = (e) => {
     body: JSON.stringify(body)
   }
 
-  const url = "https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719/" + id;
+  const url = "https://api.box3.work/api/Contato/1aaba5b0-54a4-46fb-81bd-32286173af1e/" + id;
 
   fetch(url, header)
     .then(response => console.log(response.json()));
@@ -152,8 +152,8 @@ let editarContato = (e) => {
   emailInputEdit.value = contatoSelecionado.children[2].innerHTML;
   ativoInputEdit.value = contatoSelecionado.children[3].innerHTML;
   dataInputEdit.value = contatoSelecionado.children[4].innerHTML;
-  
-  // deletarContato(e);
+
+  console.log(dataInputEdit.value);
 
 };
 
@@ -177,7 +177,7 @@ function editContato() {
     body: JSON.stringify(body)
   }
 
-  const url = "https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719/" + id;
+  const url = "https://api.box3.work/api/Contato/1aaba5b0-54a4-46fb-81bd-32286173af1e/" + id;
 
   fetch(url, header)
     .then(response => console.log(response.json()));
