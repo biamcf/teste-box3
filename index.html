@@ -33,23 +33,23 @@
         </div>
         <div class="modal-body">
           <p>Nome</p>
-          <input type="text" class="form-control" name="" id="textInput" />
-          <div id="msg"></div>
+          <input type="text" class="form-control" name="" id="nomeInput" required />
           <br />
           <p>Telefone</p>
-          <input type="tel" class="form-control" name="" id="textInput" />
+          <input type="tel" class="form-control" name="" id="telInput" required />
           <br />
           <p>Email</p>
-          <input type="email" class="form-control" name="" id="textInput" />
+          <input type="email" class="form-control" name="" id="emailInput" required />
           <br />
           <div class="form-check form-switch">
             <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" required checked>
           </div>
           <br />
           <p>Data de Nascimento</p>
-          <input type="date" class="form-control" name="" id="dateInput" />
+          <input type="date" class="form-control" name="" id="dataInput" required/>
           <br />
+          <div class="msg"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
