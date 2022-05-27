@@ -5,9 +5,18 @@ let emailInput = document.getElementById("emailInput");
 let dataInput = document.getElementById("dataInput");
 let ativoInput = document.querySelector(".form-check-input");
 
+let formEdit = document.getElementById("form-editar");
+let idEdit = document.getElementById("id-edit");
+let nomeInputEdit = document.getElementById("nomeInputEdit");
+let telInputEdit = document.getElementById("telInputEdit");
+let emailInputEdit = document.getElementById("emailInputEdit");
+let dataInputEdit = document.getElementById("dataInputEdit");
+let ativoInputEdit = document.querySelector(".switch-edit");
+
 let botaoListagem = document.getElementById("botao-listagem");
 let contatos = document.getElementById("contatos");
 let add = document.getElementById("add");
+let addEdit = document.getElementById("addEdit");
 
 let dados = [];
 
@@ -20,6 +29,18 @@ form.addEventListener("submit", (e) => {
 
   (() => {
     add.setAttribute("data-bs-dismiss", "");
+  })();
+});
+
+formEdit.addEventListener("submit", (e) => {
+  e.preventDefault();
+  editContato();
+
+  addEdit.setAttribute("data-bs-dismiss", "modal");
+  addEdit.click();
+
+  (() => {
+    addEdit.setAttribute("data-bs-dismiss", "");
   })();
 });
 
@@ -46,7 +67,6 @@ let coletaDados = () => {
   .then(response => console.log(response.json()));
 
   listarContatos();
-
 };
 
 let listarContatos = () => {
@@ -73,7 +93,6 @@ let listarContatos = () => {
             </div>
         `;
       });
-      
     });
 
   resetForm();
@@ -85,6 +104,12 @@ let resetForm = () => {
   dataInput.value = "";
   emailInput.value = "";
   dataInput.value = "";
+
+  nomeInputEdit.value = "";
+  telInputEdit.value = "";
+  dataInputEdit.value = "";
+  emailInputEdit.value = "";
+  dataInputEdit.value = "";
 };
 
 botaoListagem.addEventListener("click", () => {
@@ -93,13 +118,6 @@ botaoListagem.addEventListener("click", () => {
 
 let deletarContato = (e) => {
   let id = e.parentElement.parentElement.id;
-  // e.parentElement.parentElement.remove();
-
-  // dados.splice(e.parentElement.parentElement.id, 1);
-
-  // localStorage.setItem("data", JSON.stringify(dados));
-
-  // console.log(data);
 
   const body = {
     "nome": nomeInput.value,
@@ -127,24 +145,31 @@ let deletarContato = (e) => {
 let editarContato = (e) => {
   let contatoSelecionado = e.parentElement.parentElement;
 
-  nomeInput.value = contatoSelecionado.children[0].innerHTML;
-  telInput.value = contatoSelecionado.children[1].innerHTML;
-  emailInput.value = contatoSelecionado.children[2].innerHTML;
-  ativoInput.value = contatoSelecionado.children[3].innerHTML;
-  dataInput.value = contatoSelecionado.children[4].innerHTML;
+  idEdit.value = e.parentElement.parentElement.id;
+
+  nomeInputEdit.value = contatoSelecionado.children[0].innerHTML;
+  telInputEdit.value = contatoSelecionado.children[1].innerHTML;
+  emailInputEdit.value = contatoSelecionado.children[2].innerHTML;
+  ativoInputEdit.value = contatoSelecionado.children[3].innerHTML;
+  dataInputEdit.value = contatoSelecionado.children[4].innerHTML;
   
   // deletarContato(e);
 
+};
+
+function editContato() {
+  let id = idEdit.value;
+
   const body = {
-    "nome": nomeInput.value,
-    "telefone": telInput.value,
-    "email": emailInput.value,
-    "ativo": ativoInput.checked ? true : false,
-    "dataNascimento": dataInput.value
+    "nome": nomeInputEdit.value,
+    "telefone": telInputEdit.value,
+    "email": emailInputEdit.value,
+    "ativo": ativoInputEdit.checked ? true : false,
+    "dataNascimento": dataInputEdit.value
   }
 
   const header = {
-    method: 'DELETE',
+    method: 'PUT',
     mode: 'cors',
     headers: {
       'Content-Type' : 'Application/json',
@@ -156,4 +181,6 @@ let editarContato = (e) => {
 
   fetch(url, header)
     .then(response => console.log(response.json()));
-};
+
+  listarContatos();
+}
