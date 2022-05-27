@@ -11,11 +11,13 @@ body {
 
 .app {
   background-color: #fff;
-  width: 300px;
-  height: 500px;
+  width: 400px;
+  height: 600px;
   border: 5px solid #1374a7;
   border-radius: 8px;
-  padding: 15px;
+  padding: 20px;
+  padding-top: 50px;
+  text-align: center;
 }
 
 #addNew {
@@ -35,4 +37,61 @@ body {
 
 .msg {
   color: red;
+}
+
+#contatos {
+  display: grid;
+  height: 320px;
+  overflow-y: scroll;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  text-align: left;
+}
+
+#contatos::-webkit-scrollbar {
+  width: 16px;
+  margin-left: 5px;
+}
+
+#contatos::-webkit-scrollbar-thumb {
+  background: #1374a7;
+  border-left: 4px solid #fff;
+  border-right: 4px solid #fff;
+}
+
+#contatos::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+
+#contatos div {
+  border: 3px solid #1374a7;
+  background-color: #1374a722;
+  border-radius: 6px;
+  padding: 5px;
+  display: grid;
+  gap: 4px;
+}
+
+#contatos div .options {
+  justify-self: center;
+  display: flex;
+  gap: 20px;
+}
+
+#contatos div .options i {
+  cursor: pointer;
+}
+
+#botao-listagem {
+  margin-bottom: 10px;
+  background-color: #1374a7;
+  color: #fff;
+  
+}
+
+#botao-listagem:hover {
+  border-color: #1374a7;
+  color:#1374a7;
+  background-color: #fff;
 }

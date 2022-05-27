@@ -3,9 +3,9 @@ let nomeInput = document.getElementById("nomeInput");
 let telInput = document.getElementById("telInput");
 let emailInput = document.getElementById("emailInput");
 let dataInput = document.getElementById("dataInput");
-
 let ativoInput = document.querySelector(".form-check-input");
 
+let botaoListagem = document.getElementById("botao-listagem");
 let contatos = document.getElementById("contatos");
 let add = document.getElementById("add");
 
@@ -33,6 +33,7 @@ let coletaDados = () => {
   localStorage.setItem("data", JSON.stringify(dados));
 
   criarContato();
+
   console.log(dados);
 };
 
@@ -50,18 +51,45 @@ let criarContato = () => {
           <span class="small text-secondary">${x.data}</span>
   
           <span class="options">
-            <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
-            <i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
+            <i onClick= "editarContato(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
+            <i onClick ="deletarContato(this); criarContato()" class="fas fa-trash-alt"></i>
           </span>
         </div>
     `);
   });
-
+  resetForm();
 }
 
 let resetForm = () => {
   nomeInput.value = "";
+  telInput.value = "";
   dataInput.value = "";
   emailInput.value = "";
   dataInput.value = "";
+};
+
+botaoListagem.addEventListener("click", () => {
+    criarContato();
+});
+
+let deletarContato = (e) => {
+  e.parentElement.parentElement.remove();
+
+  dados.splice(e.parentElement.parentElement.id, 1);
+
+  localStorage.setItem("data", JSON.stringify(dados));
+
+  console.log(data);
+};
+
+let editarContato = (e) => {
+  let contatoSelecionado = e.parentElement.parentElement;
+
+  nomeInput.value = contatoSelecionado.children[0].innerHTML;
+  telInput.value = contatoSelecionado.children[1].innerHTML;
+  emailInput.value = contatoSelecionado.children[2].innerHTML;
+  ativoInput.value = contatoSelecionado.children[3].innerHTML;
+  dataInput.value = contatoSelecionado.children[4].innerHTML;
+  
+  deletarContato(e);
 };
