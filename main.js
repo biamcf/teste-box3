@@ -40,14 +40,14 @@ let criarContato = () => {
   contatos.innerHTML = "";
 
   dados.map((x, y) => {
-    console.log(x.nomeInput.value);
+    console.log(x);
     return (contatos.innerHTML += `
     <div id=${y}>
-          <span class="fw-bold">${x.nomeInput}</span>
-          <span class="fw-bold">${x.telInput}</span>
-          <span class="fw-bold">${x.emailInput}</span>
-          <span class="fw-bold">${x.ativoInput}</span>
-          <span class="small text-secondary">${x.dataInput}</span>
+          <span class="fw-bold">${x.nome}</span>
+          <span class="fw-bold">${x.telefone}</span>
+          <span class="fw-bold">${x.email}</span>
+          <span class="fw-bold">${x.ativo}</span>
+          <span class="small text-secondary">${x.data}</span>
   
           <span class="options">
             <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
