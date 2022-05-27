@@ -66,7 +66,7 @@ let coletaDados = () => {
   fetch("https://api.box3.work/api/Contato/1aaba5b0-54a4-46fb-81bd-32286173af1e", header)
     .then(response => console.log(response.json()));
 
-  listarContatos();
+  resetForm();
 };
 
 let listarContatos = () => {
@@ -142,6 +142,7 @@ let deletarContato = (e) => {
 
   fetch(url, header)
     .then(response => console.log(response.json()));
+
 };
 
 let editarContato = (e) => {
@@ -188,5 +189,4 @@ function editContato() {
   fetch(url, header)
     .then(response => console.log(response.json()));
 
-  listarContatos();
 }
