@@ -32,31 +32,38 @@ let coletaDados = () => {
 
   localStorage.setItem("data", JSON.stringify(dados));
 
-  criarContato();
+  listarContatos();
 
   console.log(dados);
 };
 
-let criarContato = () => {
+let listarContatos = () => {
   contatos.innerHTML = "";
 
-  dados.map((x, y) => {
-    console.log(x);
-    return (contatos.innerHTML += `
-    <div id=${y}>
-          <span class="fw-bold">${x.nome}</span>
-          <span class="fw-bold">${x.telefone}</span>
-          <span class="fw-bold">${x.email}</span>
-          <span class="fw-bold">${x.ativo}</span>
-          <span class="small text-secondary">${x.data}</span>
-  
-          <span class="options">
-            <i onClick= "editarContato(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
-            <i onClick ="deletarContato(this); criarContato()" class="fas fa-trash-alt"></i>
-          </span>
-        </div>
-    `);
-  });
+  fetch("https://api.box3.work/api/Contato/40c99f12-dfc5-4642-8bd0-55186b33a719")
+    .then(response => {
+      return response.json();
+    }).then(json => {
+      console.log(json);
+      json.forEach(contato => {
+        contatos.innerHTML += `
+        <div id=${contato.id}>
+              <span class="fw-bold">${contato.nome}</span>
+              <span class="fw-bold">${contato.telefone}</span>
+              <span class="fw-bold">${contato.email}</span>
+              <span class="fw-bold">${contato.ativo}</span>
+              <span class="small text-secondary">${contato.dataNascimento}</span>
+      
+              <span class="options">
+                <i onClick= "editarContato(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
+                <i onClick ="deletarContato(this); listarContatos()" class="fas fa-trash-alt"></i>
+              </span>
+            </div>
+        `;
+      });
+      
+    });
+
   resetForm();
 }
 
